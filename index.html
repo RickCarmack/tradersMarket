@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Traders Market Siding</title>
+
+    <script>
+    function init() {
+      Tabletop.init( { key: ‘https://docs.google.com/spreadsheets/d/e/2PACX-1vSnQhbNdV7xALU06BwNjOpJPTbYiXVOMjSpvbtYs3vBNAJN_y_XwumWsfZRYC3jlsG5ObpT_jIVyfF_/pubhtml?gid=235749903&single=true’,
+        callback: showInfo,
+        simpleSheet: true } )
+    }
+    function showInfo(data, tabletop) {
+      console.log(data);
+      for (var i = 0; i < data.length; i++) {
+        $(‘.post’).append(
+        ‘<div class=”article” style=”background-image: url( ‘ +
+        data[i].img + ‘.jpg)”>’ +
+        ‘<div class=”text”>’ +
+        ‘<h1>’ + data[i].type + ‘</h1>’+
+        data[i].body +
+        ‘</div> ‘ + ‘<div class=”meta-info”>’ + ‘<img src =”’ + data[i].img + ‘.jpg”>’+
+        ‘<div class=”date”>’ + data[i].date + ‘</div>’ +
+        ‘</div>’ +
+        ‘</div>’);
+      }
+}
+      window.addEventListener(‘DOMContentLoaded’, init)
+    </script>
+
+    <style media="screen">
+      div {
+        align=center;
+        border: 3px solid #73AD21
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="post"></div>
+  </body>
+</html>
