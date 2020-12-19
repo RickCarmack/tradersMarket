@@ -3,46 +3,79 @@
   <head>
     <meta charset="utf-8">
     <title>Traders Market Siding</title>
-
-    <script>
-    function init() {
-      Tabletop.init( { key: ‘https://docs.google.com/spreadsheets/d/e/2PACX-1vSnQhbNdV7xALU06BwNjOpJPTbYiXVOMjSpvbtYs3vBNAJN_y_XwumWsfZRYC3jlsG5ObpT_jIVyfF_/pubhtml?gid=235749903&single=true’,
-        callback: showInfo,
-        simpleSheet: true } )
-    }
-    function showInfo(data, tabletop) {
-      console.log(data);
-      for (var i = 0; i < data.length; i++) {
-        $(‘.post’).append(
-        ‘<div class=”article” style=”background-image: url( ‘ +
-        data[i].img + ‘.jpg)”>’ +
-        ‘<div class=”text”>’ +
-        ‘<h1>’ + data[i].type + ‘</h1>’+
-        data[i].body +
-        ‘</div> ‘ + ‘<div class=”meta-info”>’ + ‘<img src =”’ + data[i].img + ‘.jpg”>’+
-        ‘<div class=”date”>’ + data[i].date + ‘</div>’ +
-        ‘</div>’ +
-        ‘</div>’);
-      }
-}
-      window.addEventListener(‘DOMContentLoaded’, init)
-    </script>
-
     <style media="screen">
-      div {
-        align=center;
-        border: 3px solid #73AD21
-        margin: auto;
+      caption {
+        font-size: 24px;
       }
-      iframe {
-        height: 768px;
-        width: 1400px;
+      td, th {
+        text-align: left;
+        padding: 5px;
       }
     </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+    <script>
+      var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1eShPq9kRk8CFtboJ58LheCWQC_DbINGcaAIZs1-l8C4/edit#gid=235749903';
+
+      function init() {
+        Tabletop.init( { key: publicSpreadsheetUrl,
+                         callback: showInfo,
+                         simpleSheet: true } )
+      }
+
+      function showInfo(data, tabletop) {
+      console.log(data);
+      for (var i = 0; i < data.length; i++) {
+      $('.post').append(
+        '<tr><td>' + data[i].type + '</td>' +
+        '<td>' + data[i].description + '</td>' +
+        '<td>' + data[i].breakdown + '</td>' +
+        '<td>' + data[i].l1 + '</td>' +
+        '<td>' + data[i].l2 + '</td>' +
+        '<td>' + data[i].l3 + '</td>' +
+        '<td>' + data[i].c1 + '</td>' +
+        '<td>' + data[i].c2 + '</td>' +
+        '<td>' + data[i].c3 + '</td>' +
+        '<td>' + data[i].lf + '</td>' +
+        '<td>' + data[i].sf + '</td>' +
+        '<td>$' + data[i].perLF + '</td>' +
+        '<td>$' + data[i].price + '</td>' +
+        '<td>' + data[i].packID + '</td>' +
+        '<td>' + data[i].pattern + '</td>' +
+        '<td>' + data[i].inv + '</td>' +
+        '<td>' + data[i].inStock + '</td></tr>'
+        );
+      }
+      }
+      window.addEventListener('DOMContentLoaded', init)
+
+    </script>
+
   </head>
   <body>
-    <div class="post"></div>
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSnQhbNdV7xALU06BwNjOpJPTbYiXVOMjSpvbtYs3vBNAJN_y_XwumWsfZRYC3jlsG5ObpT_jIVyfF_/pubhtml?gid=235749903&single=true">
-   </iframe>
+    <table>
+      <caption>Wood Siding</caption>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Breakdown</th>
+        <th>L1</th>
+        <th>L2</th>
+        <th>L3</th>
+        <th>C1</th>
+        <th>C2</th>
+        <th>C3</th>
+        <th>LF</th>
+        <th>SF</th>
+        <th>PerLF</th>
+        <th>Price</th>
+        <th>PackID</th>
+        <th>Pattern</th>
+        <th>Invoice</th>
+        <th>In Stock</th>
+      </thead>
+      <tfoot class="post"></tfoot>
+    </table>
+
   </body>
 </html>
